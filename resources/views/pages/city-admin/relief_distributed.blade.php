@@ -22,6 +22,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Total Relief Prepared</th>
                         <th scope="col">Relief Recievers</th>
+                        <th scope="col">Total Received</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,7 @@
                                         </ul>
                                     @endforeach
                                 </td>
+                                <td>{{count($record->resident)}}</td>
                                 
                             </tr>
 
