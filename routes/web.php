@@ -17,6 +17,8 @@ use App\Mail\WelcomMail;
 //     Mail::to('vlarrabis@gmail.com')->send(new WelcomMail());
 //     return new WelcomMail();
 // });
+Route::get('/super_admin/registration', function(){return view('pages.super_admin');});
+Route::get('/super_admin/registration', function(){return view('pages.city_admin');});
 Route::put('/distributor_change_pass','UsersController@distributor_pass');
 Route::get('/relief_qr/{id}','ReliefsController@scannedrel');
 Route::get('/scanned_qr/{id}','ResidentsController@scanqr');
