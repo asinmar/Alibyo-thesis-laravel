@@ -306,7 +306,7 @@ class ResidentsController extends Controller
 
 
     public function records(){
-        $records  = Resident::with('relief')->orderBy('res_last_name','ASC')->get();
+        $records  = Resident::with('relief')->orderBy('res_last_name','ASC')->paginate(10);
         return view('pages.record')->with('records',$records);
     }
 

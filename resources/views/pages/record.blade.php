@@ -41,6 +41,9 @@
             </div>
         </div>
     </div>
+    <div>
+    {{$records->links()}}
+    </div>
 </div>
     
 @endsection
