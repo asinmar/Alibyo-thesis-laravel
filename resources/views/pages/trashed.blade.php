@@ -80,8 +80,8 @@
                                 <th style="display:none">{{$resident->res_id}}</th>
                                 <td>
                                     <button type="button" class="btn btn-success btn-sm retrieveResident" data-toggle="modal" data-target="#residentmodal">
-                                        Retrive
-                                      </button>
+                                        Retrieve
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach

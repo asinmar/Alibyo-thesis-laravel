@@ -306,7 +306,7 @@ class ResidentsController extends Controller
 
 
     public function records(){
-        $records  = Resident::with('relief')->get();
+        $records  = Resident::with('relief')->where('res_last_name','ASC')->get();
         return view('pages.record')->with('records',$records);
     }
 
