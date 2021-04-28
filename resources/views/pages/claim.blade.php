@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <div>
-            <h2>List of Reciever</h2>
+            <h2>List of Receiver</h2>
         </div>
         <div class="row">
             <div class="col-md-12">

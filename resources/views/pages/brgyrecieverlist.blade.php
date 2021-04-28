@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="head text-center">
-        <h2>Recievers</h2>
+        <h2>Receivers</h2>
     </div>
     <div class="main">
         <div class="table-responsive-lg">

@@ -25,7 +25,7 @@ Route::get('/scanned_qr/{id}','ResidentsController@scanqr');
 Route::put('/recieved_relief','ResidentsController@recieved_relief');
 Route::post('/log','ApiController@login');
 Route::put('/posttest','DonorsController@posttest');
-Route::get('/postman','ResidentsController@postman');
+Route::get('/postman/{id}','ResidentsController@postman');
 
 Route::put('/reset_distributor_password','UsersController@reset')->middleware('admin');
 Route::put('/search_result', 'UsersController@search')->middleware('admin');
@@ -51,7 +51,7 @@ Route::get('/update_information','PagesController@updateinfo')->middleware('city
 Route::get('/barangay_trashed','TrashController@brgytrashed')->middleware('cityadmin');
 
 
-Route::get('/recieved_list','ResidentsController@records');
+Route::get('/recieved_list','ResidentsController@records')->middleware('admin');
 
 
 Route::get('/super_admin','UsersController@admin_account')->middleware('superadmin');

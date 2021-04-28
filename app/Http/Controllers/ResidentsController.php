@@ -310,4 +310,9 @@ class ResidentsController extends Controller
         return view('pages.record')->with('records',$records);
     }
 
+
+    public function postman($id){
+        $as = Resident::find($id);
+        return $as;
+    }
 }

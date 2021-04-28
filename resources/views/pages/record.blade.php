@@ -10,7 +10,7 @@
 
 <div class="container-fluid">
     <div>
-        <h2>Past Relief Recievers</h2>
+        <h2>Past Relief Receivers</h2>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -19,7 +19,7 @@
                     <thead>
                       <tr>
                         <th scope="col">Names</th>
-                        <th scope="col">Recieved Relief</th>
+                        <th scope="col">Received Relief</th>
                       </tr>
                     </thead>
                     <tbody>
