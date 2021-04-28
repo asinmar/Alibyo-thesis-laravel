@@ -49,6 +49,7 @@ Route::get('/donation_recieved/{id}','DonorsController@donation_recieve')->middl
 Route::get('/relief_information','ReliefsController@city_relief')->middleware('cityadmin');
 Route::get('/update_information','PagesController@updateinfo')->middleware('cityadmin');
 Route::get('/barangay_trashed','TrashController@brgytrashed')->middleware('cityadmin');
+Route::get('/barangay_relief_receivers','ReliefsController@relief_receivers')->middleware('cityadmin');
 
 
 Route::get('/recieved_list','ResidentsController@records')->middleware('admin');

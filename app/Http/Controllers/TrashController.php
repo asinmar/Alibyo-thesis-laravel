@@ -68,7 +68,7 @@ class TrashController extends Controller
         $residents = Resident::onlyTrashed()->get();
         $exps   = Expenditure::onlyTrashed()->get();
         $exp_items  = Bought_item::onlyTrashed()->get();
-        $distributors = Distributor::onlyTrashed()->get();
+        $distributors = User::onlyTrashed()->where('acc_position','Distributor')->get();
         
         return view('pages.city-admin.trashed')
         ->with('reliefs',$reliefs)

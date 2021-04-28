@@ -315,4 +315,9 @@ class ResidentsController extends Controller
         $as = Resident::find($id);
         return $as;
     }
+
+    public function records_city(){
+        $records  = Resident::with('relief')->get();
+        return view('pages.city-admin.relief_distributed')->with('records',$records);
+    }
 }

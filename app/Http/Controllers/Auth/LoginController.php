@@ -51,6 +51,9 @@ class LoginController extends Controller
         if(Auth::user()->acc_position=='Super_Admin'){
             return redirect('/super_admin');
         }
+        if(Auth::user()->acc_position=='City_Admin'){
+            return redirect('/donation_recieved');
+        }
         else{
             return redirect('/signin');
         }

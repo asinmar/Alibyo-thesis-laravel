@@ -65,7 +65,7 @@
           <a class="nav-link" href="/donation_recieved">Donations<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item a">
-          <a class="nav-link" href="#">Residents<span class="sr-only"></span></a>
+          <a class="nav-link" href="/barangay_relief_receivers">Residents<span class="sr-only"></span></a>
         </li>
         <li class="nav-item a">
           <a class="nav-link" href="/relief_information">Reliefs<span class="sr-only"></span></a>

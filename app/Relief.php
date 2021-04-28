@@ -15,6 +15,6 @@ class Relief extends Model
     }
 
     public function resident(){
-        return $this->belongsToMay(Resident::class,'resident_relief','relief_id','res_id');
+        return $this->belongsToMany(Resident::class,'resident_relief','relief_id','res_id');
     }
 }

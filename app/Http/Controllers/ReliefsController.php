@@ -150,4 +150,10 @@ class ReliefsController extends Controller
         $completed_reliefs = Relief::where('relief_status','COMPLETED')->orderBy('relief_date_prepared','DESC')->get();
         return view('pages.city-admin.relief')->with('pending_reliefs',$pending_reliefs)->with('completed_reliefs',$completed_reliefs);
     }
+
+
+    public function relief_receivers(){
+        $records = Relief::all();
+        return view('pages.city-admin.relief_distributed')->with('records',$records);
+    }
 }
