@@ -295,7 +295,7 @@ use Carbon\Carbon;
               <input type="text" class="form-control"  name="middle_name" placeholder="Middle Name">
             </div>
             <div class="form-group">
-              <label for="gender">Civil Status</label>
+              <label for="gender">Gender</label>
                 <select name="gender" class="form-control"  required>
                   <option disabled selected>Gender---</option>
                   <option>Male</option>
@@ -314,7 +314,7 @@ use Carbon\Carbon;
               </div>
             </div> --}}
             <div class="form-group">
-              <label for="age">Age</label>
+              <label for="age">Birth Date</label>
               <input type="date" class="form-control" id="regage" name="dob" onkeyup="regAgeCalc(this)" min="1900-01-01" max="2999-01-01" required>
             </div>
             <p id="warn" style="color: red"></p>
@@ -404,7 +404,7 @@ use Carbon\Carbon;
               <input type="text" class="form-control" id="middlename" name="middle_name" placeholder="Middle Name" required>
             </div>
             <div class="form-group">
-              <label for="gender">Civil Status</label>
+              <label for="gender">Gender</label>
                 <select name="gender" class="form-control" id="gender" required>
                   <option disabled selected>Gender---</option>
                   <option>Male</option>
@@ -414,7 +414,6 @@ use Carbon\Carbon;
             <div class="form-group">
               <label for="age">Birth Date</label>
               <input type="date" class="form-control" id="age" name="dob" onkeyup="agecalc(this)" min="1900-01-01" max="2999-01-01" required>
-              
               
               <p id="test" style="color: red"></p>
             </div>
