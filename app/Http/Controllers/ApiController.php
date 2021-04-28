@@ -34,9 +34,9 @@ class ApiController extends Controller
         if (! $token = auth()->attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        // if(Auth::user()->acc_position != "Distributor"){
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
+        if(Auth::user()->acc_position != "Distributor"){
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
 
         return $this->createNewToken($token);
     }
