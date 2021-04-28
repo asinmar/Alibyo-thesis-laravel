@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-dark text-light">{{ __('Super Admin Registration Form') }}</div>
+                    <div class="card-header bg-dark text-light">{{ __('City Admin Registration Form') }}</div>
                     @foreach ($errors as $error)
                         <div class="alert alert-danger">
                             {{$error}}
