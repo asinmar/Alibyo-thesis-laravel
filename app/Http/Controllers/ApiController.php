@@ -37,6 +37,9 @@ class ApiController extends Controller
         if(Auth::user()->acc_position != "Distributor"){
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        if(Auth::user()->acc_status == "Disabled"){
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
 
         return $this->createNewToken($token);
     }
