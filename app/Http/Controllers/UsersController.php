@@ -100,7 +100,7 @@ class UsersController extends Controller
         $dist->acc_position = "Distributor";
         $dist->acc_status = "Disabled";
         $dist->username = $request->input('username');
-        $dist->password = Hash::make($request->input('password'));
+        $dist->password = Hash::make('password');
         $dist->email = $request->input('email');
         $dist->save();
         return back()->with('success','Account Successfully Added');
