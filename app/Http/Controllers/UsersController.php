@@ -85,4 +85,77 @@ class UsersController extends Controller
         $user->save();
         return back()->with('success','Update Success: '. $request->get('name') .' : '. $request->input('status'));
     }
+
+    // DISTRIBUTORS-------------------------
+    public function register(Request $request){
+
+        $request->validate([
+            'username' => 'required|unique:distributors|max:255',
+        ]);
+        $dist = new User;
+        $dist->lastname = $request->input('lname');
+        $dist->firstname = $request->input('fname');
+        $dist->middlename = $request->input('mname');
+        $dist->contact_number = $request->input('contact');
+        $dist->acc_position = "Distributor";
+        $dist->acc_status = "Disabled";
+        $dist->username = $request->input('username');
+        $dist->password = Hash::make($request->input('password'));
+        $dist->email = $request->input('email');
+        $dist->save();
+        return back()->with('success','Account Successfully Added');
+    }
+
+    public function distributor(){
+        $dist = User::where('acc_position','Distributor')->paginate(10);
+        return view('pages.distributor')->with('distributors',$dist);
+    }
+
+    public function search(Request $request){
+        $dist = User::where('lastname','like','%'.$request->get('search').'%')->where('acc_position','Distributor')->paginate(20);
+        return view('pages.distributor')->with('distributors',$dist);
+    }
+
+    public function editinfo(Request $request){
+        
+        $dist = User::find($request->get('id'));
+        $dist->lastname = $request->input('lname');
+        $dist->firstname = $request->input('fname');
+        $dist->middlename = $request->input('mname');
+        $dist->email = $request->input('email');
+        $dist->contact_number = $request->input('contact');
+        $dist->save();
+        return back()->with('success',"Distributor's information successfully updated");
+    }
+
+    public function update_status(Request $request){
+        $dist = User::find($request->get('id'));
+        $dist->acc_status = $request->input('status');
+        $dist->save();
+        return back()->with('success',$dist->lastname.', '.$dist->firstname.' '.$dist->middlename. '  '.'Status:  '.$request->get('status'));
+    }
+
+    
+    public function reset(Request $request){
+        $dist = User::find($request->get('id'));
+        $dist->password = Hash::make($request->get('pass'));
+        $dist->save();
+        return back()->with('success','Password of '.$dist->lastname.', '.$dist->firstname.' '.$dist->middlename.' reset successfully!');
+    }
+
+
+    public function distributor_pass(Request $request){
+        $id = $request->get('distributor_id');
+        $dist = User::find($id);
+        $dist->password = Hash::make($request->get('password'));
+        $dist->save();
+        return "Password Successfully Changed";
+
+    }
+    public function softdeletedist(Request $request){
+        $del = User::find($request->get('id'));
+        $del->delete();
+        return back()->with('success','Distributor Successfully Deleted');
+    }
+
 }

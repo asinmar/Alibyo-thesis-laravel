@@ -17,6 +17,7 @@ use App\Mail\WelcomMail;
 //     Mail::to('vlarrabis@gmail.com')->send(new WelcomMail());
 //     return new WelcomMail();
 // });
+Route::put('/distributor_change_pass','UsersController@distributor_pass');
 Route::get('/relief_qr/{id}','ReliefsController@scannedrel');
 Route::get('/scanned_qr/{id}','ResidentsController@scanqr');
 Route::put('/recieved_relief','ResidentsController@recieved_relief');
@@ -24,13 +25,13 @@ Route::post('/log','ApiController@login');
 Route::put('/posttest','DonorsController@posttest');
 Route::get('/postman','ResidentsController@postman');
 
-Route::put('/reset_distributor_password','DistributorsController@reset')->middleware('admin');
-Route::put('/search_result', 'DistributorsController@search')->middleware('admin');
-Route::put('/update_status','DistributorsController@update_status')->middleware('admin');
-Route::put('/edit_distributor','DistributorsController@editinfo')->middleware('admin');
-Route::get('/distributor','DistributorsController@index')->middleware('admin');
-Route::post('/register_distributor','DistributorsController@register')->middleware('admin');
-Route::put('/delete_distributor','DistributorsController@softdelete')->middleware('admin');
+Route::put('/reset_distributor_password','UsersController@reset')->middleware('admin');
+Route::put('/search_result', 'UsersController@search')->middleware('admin');
+Route::put('/update_status','UsersController@update_status')->middleware('admin');
+Route::put('/edit_distributor','UsersController@editinfo')->middleware('admin');
+Route::get('/distributor','UsersController@distributor')->middleware('admin');
+Route::post('/register_distributor','UsersController@register')->middleware('admin');
+Route::put('/delete_distributor','UsersController@softdeletedist')->middleware('admin');
 
 
 Route::put('/delete_donor','DonorsController@softdelete')->middleware('admin');

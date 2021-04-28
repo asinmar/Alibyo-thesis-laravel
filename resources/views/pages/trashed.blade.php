@@ -305,8 +305,6 @@
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Date of Birth</th>
-                                <th scope="col">Gender</th>
                                 <th scope="col">Retrieve</th>
                             
                             </tr>
@@ -316,10 +314,8 @@
                                 
                                 @foreach ($distributors as $distributor)
                                 <tr>
-                                    <td style="display: none">{{$distributor->distributor_id}}</td>
-                                    <td>{{$distributor->last_name}}, {{$distributor->first_name}} {{$distributor->middle_name}}</td>
-                                    <td>{{$distributor->date_of_birth}}</td>
-                                    <td>{{$distributor->gender}}</td>
+                                    <td style="display: none">{{$distributor->id}}</td>
+                                    <td>{{$distributor->lastname}}, {{$distributor->firstname}} {{$distributor->middlename}}</td>
                                     <td>
                                         <button type="button" class="btn btn-success btn-sm distbtn" data-toggle="modal" data-target="#distmodal">
                                             Retrieve

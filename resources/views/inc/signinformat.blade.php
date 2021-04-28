@@ -4,7 +4,7 @@ body{
 }
 .loginbox{
     width: 100%;
-    height: 100%;
+    height: 650px;
     background: #042331;
     color: rgb(255, 255, 255);
     top: 50%;

@@ -20,5 +20,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/recieved_relief',
         '/log',
+        '/distributor_change_pass'
     ];
 }

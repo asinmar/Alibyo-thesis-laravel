@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Resident;
 use App\Donor;
 use App\Donation;
-use App\Distributor;
+use App\User;
 use App\Bought_item;
 use App\Expenditure;
 use App\Relief;
@@ -20,7 +20,7 @@ class TrashController extends Controller
         $residents = Resident::onlyTrashed()->get();
         $exps   = Expenditure::onlyTrashed()->get();
         $exp_items  = Bought_item::onlyTrashed()->get();
-        $distributors = Distributor::onlyTrashed()->get();
+        $distributors = User::onlyTrashed()->where('acc_position','Distributor')->get();
         
         
 
@@ -42,7 +42,9 @@ class TrashController extends Controller
 
 
     public function ret_dist(Request $request){
-        $ret = Distributor::onlyTrashed()->find($request->get('id'));
+        $ret = User::onlyTrashed()->find($request->get('id'));
+        $ret->acc_status = "Disabled";
+        $ret->save();
         $ret->restore();
         return back()->with('success','Distributor Retrieved Successfully');
     }

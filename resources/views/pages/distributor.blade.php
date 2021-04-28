@@ -45,39 +45,38 @@
                             <th>Last Name</th>
                             <th>FirstName</th>
                             <th>Middle Name</th>
-                            <th>Gender</th>
                             <th>Contact Number</th>
+                            <th>Email</th>
                             <th>Username</th>
-                            <th>Birth Date</th>
                             <th>Status</th>
                             <th>Edit</th>
                             <th>Reset Password</th>
+                            
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($distributors as $distributor)
                               <tr>
-                                  <td>{{$distributor->distributor_id}}</td>
-                                  <td>{{$distributor->last_name}}</td>
-                                  <td>{{$distributor->first_name}}</td>
-                                  <td>{{$distributor->middle_name}}</td>
-                                  <td>{{$distributor->gender}}</td>
+                                  <td>{{$distributor->id}}</td>
+                                  <td>{{$distributor->lastname}}</td>
+                                  <td>{{$distributor->firstname}}</td>
+                                  <td>{{$distributor->middlename}}</td>
                                   <td>{{$distributor->contact_number}}</td>
+                                  <td>{{$distributor->email}}</td>
                                   <td>{{$distributor->username}}</td>
-                                  <td>{{$distributor->date_of_birth}}</td>
                                   <td>
-                                      @if ($distributor->status=='Enabled')
+                                      @if ($distributor->acc_status=='Enabled')
                                         <div class="dropdown">
                                             <button class="btn btn-success dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                {{$distributor->status}}
+                                                {{$distributor->acc_status}}
                                             </button>
                                             <form method="POST">
                                                 {{ csrf_field() }}
                                                 {{method_field('PUT')}}
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <div class="d-flex justify-content-around">
-                                                        <input type="hidden" name="id" value="{{$distributor->distributor_id}}">
+                                                        <input type="hidden" name="id" value="{{$distributor->id}}">
                                                         <button class="btn btn-success btn-sm" formaction="{{url('/update_status')}}" name="status" value="Enabled">Enable</button>
                                                         <button class="btn btn-danger btn-sm" formaction="{{url('/update_status')}}" name="status" value="Disabled">Disable</button>
                                                     </div>
@@ -87,14 +86,14 @@
                                         @else
                                         <div class="dropdown">
                                             <button class="btn btn-danger dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                {{$distributor->status}}
+                                                {{$distributor->acc_status}}
                                             </button>
                                             <form method="POST">
                                                 {{ csrf_field() }}
                                                 {{method_field('PUT')}}
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <div class="d-flex justify-content-around">
-                                                        <input type="hidden" name="id" value="{{$distributor->distributor_id}}">
+                                                        <input type="hidden" name="id" value="{{$distributor->id}}">
                                                         <button class="btn btn-success btn-sm" formaction="{{url('/update_status')}}" name="status" value="Enabled">Enable</button>
                                                         <button class="btn btn-danger btn-sm" formaction="{{url('/update_status')}}" name="status" value="Disabled">Disable</button>
                                                     </div>
@@ -187,18 +186,20 @@
                 <input type="text" name="fname" id="firstname" class="form-control"  required>
                 <label>Middle Name</label>
                 <input type="text" name="mname" id="middlename" class="form-control">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="exampleFormControlSelect1">Gender</label>
                     <select class="form-control" id="gender" name="gender" id="exampleFormControlSelect1">
                       <option disabled selected ></option>
                       <option>Female</option>
                       <option>Male</option>
                     </select>
-                </div>
+                </div> -->
+                <label>Email</label>
+                <input type="email" name="email"  class="form-control" id="email" required>
                 <label>Contact Number</label>
-                <input type="number" name="contact"  class="form-control" maxlength="11" id="contact" required>
-                <label for="birth">Date of Birth</label>
-                <input type="date" class="form-control" id="birth" name="dob" min="1900-01-01" max="2999-01-01"  required>
+                <input type="text" name="contact"  class="form-control" maxlength="11" id="contact" required>
+                <!-- <label for="birth">Date of Birth</label>
+                <input type="date" class="form-control" id="birth" name="dob" min="1900-01-01" max="2999-01-01"  required> -->
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -214,7 +215,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Delete Distributor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -235,7 +236,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Confirm</button>
         </div>
         </form>
       </div>
@@ -268,23 +269,27 @@
                 <label>Middle Name</label>
                 <input type="text" name="mname"  class="form-control" required>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="exampleFormControlSelect1">Gender</label>
                 <select class="form-control" name="gender" id="exampleFormControlSelect1">
                   <option disabled selected>Gender</option>
                   <option>Female</option>
                   <option>Male</option>
                 </select>
-            </div>
-              <input type="hidden" name="status" value="Disabled">
+            </div> -->
+              <!-- <input type="hidden" name="status" value="Disabled"> -->
             <div class="form-group">
                 <label for="contact">Contact Number</label>
                 <input type="text" class="form-control"  name="contact" maxlength="11" required>
             </div>
             <div class="form-group">
+                <label for="contact">Email</label>
+                <input type="email" class="form-control"  name="email" required>
+            </div>
+            <!-- <div class="form-group">
                 <label for="email">Date of Birth</label>
                 <input type="date" class="form-control" name="dob" required>
-            </div>
+            </div> -->
             <hr>
             <div class="form-group">
                 <label>Username</label>
@@ -317,9 +322,10 @@
         $('#lastname').val(data[1]);
         $('#firstname').val(data[2]);
         $('#middlename').val(data[3]);
-        $('#gender').val(data[4]);
-        $('#contact').val(data[5]);
-        $('#birth').val(data[7]);
+        // $('#gender').val(data[4]);
+        $('#email').val(data[5]);
+        $('#contact').val(data[4]);
+        // $('#birth').val(data[7]);
       });
     });
 </script>
