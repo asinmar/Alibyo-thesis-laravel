@@ -57,6 +57,7 @@ Route::get('/recieved_list','ResidentsController@records')->middleware('admin');
 
 Route::get('/super_admin','UsersController@admin_account')->middleware('superadmin');
 Route::put('/update_admin_account','UsersController@update_account')->middleware('superadmin');
+Route::get('/edit_super_admin_account','PagesController@supereditaccount')->middleware('superadmin');
 Route::post('/send_email','Auth\ForgotPasswordController@password');
 
 

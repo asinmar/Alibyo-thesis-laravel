@@ -95,6 +95,9 @@
                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
+                        <a class="dropdown-item" href="{{ url('edit_super_admin_account') }}">
+                            {{ __('Edit Profile') }}
+                        </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>

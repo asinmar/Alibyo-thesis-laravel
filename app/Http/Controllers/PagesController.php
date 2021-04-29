@@ -72,5 +72,8 @@ class PagesController extends Controller
         return view('pages.city-admin.updateaccount');
     }
     
+    public function supereditaccount(){
+        return view('pages.super_updateaccount');
+    }
 }
 
