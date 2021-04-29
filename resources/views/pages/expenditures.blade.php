@@ -4,6 +4,27 @@
         padding: 0px 20px 0px;
         border: 1px solid;
     }
+    ul li{
+        list-style-type: none;
+    }
+
+    .checkbox{
+        margin-top: 10px;
+        border: 1px solid;
+        height: 200px;
+        border-radius: 3px;
+        
+    }
+    .checkbox h6{
+        text-align: center;
+    }
+    .inside{
+        padding:0 20px 0;  
+        height: 158px;
+      
+    }
+
+
 </style>
 @extends('layout.app')
 @section('content') 
@@ -39,7 +60,8 @@
                         <table class="table text-center table-sm" >
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Amount Used(PHP)</th>
+                                    <th>Total Amount Used(PHP)</th>
+                                    <th>Cash Donations Used</th>
                                     <th>Purchased By</th>
                                     <th>Date Purchased</th>
                                     <th>Purchased item</th>
@@ -51,6 +73,21 @@
                                     <tr>
                                         <td style="display: none;">{{$item->exp_id}}</td>
                                         <td>{{$item->exp_used_amount}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                View
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px">
+                                                @foreach($item->donation as $cash)
+                                                    <ul>
+                                                        <li>{{$cash->donation_amount}} PHP</li>
+                                                    </ul>
+                                                @endforeach
+                                                </div>
+                                            </div>
+                                           
+                                        </td>
                                         <td>{{$item->purchased_by}}</td>
                                         <td>{{$item->date_purchased}}</td>
                                         <td>
@@ -125,12 +162,29 @@
             {{ csrf_field() }}
             {{method_field('PUT')}}
             <div class="modal-body">
-            <label>Amount Used(PHP)</label>
+            <label>Total Amount Used(PHP)</label>
             <input type="number" name="amtused" class="form-control" >
             <label>Purchased By</label>
             <input type="text" name="purchased_by" class="form-control">
             <label>Date Purchased</label>
             <input type="date" name="date_purchased" id="dp" class="form-control">
+                <div class=" checkbox">
+                    <h6>Please Select Amount Used</h6>
+                    <div class="inside overflow-auto">
+                        @foreach($donations as $donation)
+                            <div class="form-check">                           
+                                <input class="form-check-input" type="checkbox" name="donation_array[]" value="{{$donation->donation_id}}">
+                                <label class="form-check-label">
+                                <tr>
+                                    <td>
+                                        {{$donation->donation_amount}} PHP
+                                    </td>
+                                </tr>
+                                </label>       
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

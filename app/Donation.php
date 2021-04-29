@@ -21,5 +21,10 @@ class Donation extends Model
     }
     
 
+    public function expenditure(){
+        return $this->belongsToMany(Expenditure::class,'donation_expenditure','donation_id','exp_id');
+    }
+    
+
     
 }
