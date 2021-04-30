@@ -7,7 +7,7 @@
     <h2>Distributed Relief</h2>
     @if (count($reliefs)>0)
     <table class=" table table-sm table-fixed text-center table-responsive-lg">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th>Relief Name</th>
                 <th>Relief item/Description</th>

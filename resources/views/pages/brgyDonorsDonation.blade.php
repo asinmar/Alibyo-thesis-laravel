@@ -7,8 +7,11 @@
             <div class="table-responsive-lg">
                 @if (count($donations)>0)
                 <table class="table table-sm text-center">
-                    <thead>
+                    <thead class="thead-dark">
                       <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Amount</th>
                         <th scope="col">Description</th>
                         <th scope="col">Donation Type</th>
                         <th scope="col">Donation Status</th>
@@ -16,7 +19,10 @@
                     </thead>
                     <tbody>
                             @foreach ($donations as $donation)
-                                <tr>
+                                <tr> 
+                                    <td>{{$donation->donation_quantity}}</td>
+                                    <td>{{$donation->donation_unit}}</td>
+                                    <td>{{$donation->donation_amount}}</td>
                                     <td>{{$donation->donation_description}}</td>
                                     <td>{{$donation->donation_type}}</td>
                                     <td>{{$donation->donation_status}}</td>

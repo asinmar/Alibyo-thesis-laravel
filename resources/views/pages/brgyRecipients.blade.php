@@ -17,7 +17,7 @@
         <div class="table-responsive-lg">
             @if (count($recipients)>0)
             <table class="table table-sm text-center">
-                <thead>
+                <thead class="thead-dark">
                   <tr>
                     <th scope="col">Name/Comp. Name</th>
                     <th scope="col">Donor Type</th>
