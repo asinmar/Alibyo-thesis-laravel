@@ -172,16 +172,19 @@
                     <h6>Please Select Amount Used</h6>
                     <div class="inside overflow-auto">
                         @foreach($donations as $donation)
-                            <div class="form-check">                           
-                                <input class="form-check-input" type="checkbox" name="donation_array[]" value="{{$donation->donation_id}}">
-                                <label class="form-check-label">
-                                <tr>
-                                    <td>
-                                        {{$donation->donation_amount}} PHP
-                                    </td>
-                                </tr>
-                                </label>       
-                            </div>
+                            @if($donation->donation_type == 'CASH')
+                                <div class="form-check">                           
+                                    <input class="form-check-input" type="checkbox" name="donation_array[]" value="{{$donation->donation_id}}">
+                                    <label class="form-check-label">
+                                        <tr>
+                                            <td>
+                                                {{$donation->donation_amount}} PHP
+                                            </td>
+                                            
+                                        </tr>
+                                    </label>       
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
