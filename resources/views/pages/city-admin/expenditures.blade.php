@@ -31,9 +31,11 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px">
                                         @foreach($expenditure->donation as $cash)
-                                            <ul>
-                                                <li>{{$cash->donation_amount}} PHP</li>
-                                            </ul>
+                                            if($expenditure->donation_type == 'CASH')
+                                                <ul>
+                                                    <li>{{$cash->donation_amount}} PHP</li>
+                                                </ul>
+                                            @endif
                                         @endforeach
                                         </div>
                                     </div>
