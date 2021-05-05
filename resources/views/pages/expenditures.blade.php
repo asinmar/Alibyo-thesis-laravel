@@ -163,11 +163,11 @@
             {{method_field('PUT')}}
             <div class="modal-body">
             <label>Total Amount Used(PHP)</label>
-            <input type="number" name="amtused" class="form-control" >
+            <input type="number" name="amtused" class="form-control" required>
             <label>Purchased By</label>
-            <input type="text" name="purchased_by" class="form-control">
+            <input type="text" name="purchased_by" class="form-control" required>
             <label>Date Purchased</label>
-            <input type="date" name="date_purchased" id="dp" class="form-control">
+            <input type="date" name="date_purchased" id="dp" class="form-control" required>
                 <div class=" checkbox">
                     <h6>Please Select Amount Used</h6>
                     <div class="inside overflow-auto">

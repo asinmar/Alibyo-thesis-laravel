@@ -76,7 +76,7 @@
                 <li><a class="dropdown-item" href="/relief"><i class="fas fa-boxes"></i>Reliefs</a></li>
                 <li><a class="dropdown-item" href="/expenditures"><i class="fas fa-coins"></i>Expenditures</a></li>
                 <li><a class="dropdown-item" href="/smsSender"><i class="far fa-envelope"></i>Send SMS</a></li>
-                <li><a class="dropdown-item" href="/list_of_receivers"><i class="fas fa-list"></i>Names to receive</a></li>
+                <li><a class="dropdown-item" href="/list_of_receivers"><i class="fas fa-list"></i>Names to Receive</a></li>
                 <li><a class="dropdown-item" href="/distributedRelief"><i class="fas fa-user-check"></i>Distributed Relief</a></li>
                 <li><a class="dropdown-item" href="/distributor"><i class="far fa-handshake"></i>Distributor</a></li>
                 <li><a class="dropdown-item" href="/trashed"><i class="far fa-trash-alt"></i>Trashed</a></li>

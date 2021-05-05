@@ -21,17 +21,22 @@ class ExpendituresController extends Controller
 
     public function store(Request $request){
         $asd =  $request->get('donation_array');
-     
+        if($asd==null){
+            $asd = [];
+        }
         $exp = new Expenditure;
         $exp->exp_used_amount = $request->input('amtused');
         $exp->purchased_by = $request->input('purchased_by');
         $exp->date_purchased = $request->input('date_purchased');
         $exp->save();
-        for ($i=0; $i < count($asd); $i++) { 
-            $donation = Donation::find($asd[$i]);
-            $donation->donation_status = "COMPLETED";
-            $donation->save();
+        if(count($asd)>0){
+            for ($i=0; $i < count($asd); $i++) { 
+                $donation = Donation::find($asd[$i]);
+                $donation->donation_status = "COMPLETED";
+                $donation->save();
+            }
         }
+        
         $save = Expenditure::with('donation')->latest()->first();
         $save->donation()->attach($request->get('donation_array'));
         return back()->with('success','Data Saved!!');
