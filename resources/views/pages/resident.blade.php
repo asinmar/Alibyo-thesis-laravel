@@ -114,7 +114,7 @@ use Carbon\Carbon;
                                     </button>
                                     @endif   
                                   </td>
-                                  <td><a href="/resident/{{$resident->res_id}}"><i class="fas fa-qrcode"></i></a></td>
+                                  <td><a href="/resident/{{$resident->res_id}}" class="btn btn-outline-primary btn-sm"><i class="fas fa-qrcode"></i></a></td>
                                   {{-- <td><a href="/resident/{{$resident->res_id}}/edit" ><i class="fas fa-user-edit"></i>Edit</a></td> --}}
                                   <td><a href="#" class="btn btn-outline-primary btn-sm editbtn"><i class="fas fa-user-edit"></i>Edit</a></td>
                                   <td><a href="#" style="color: red" class="btn btn-outline-danger btn-sm deletebtn" data-toggle="modal" data-target="#residentdeletemodal  "><i class="fas fa-trash"></i>Delete</a></td>    
@@ -140,7 +140,7 @@ use Carbon\Carbon;
           </button>
         
           <button type="button" class="btn btn-outline-info btn-sm purokupdate" data-toggle="modal" data-target="#updatepurokqr" >
-            Purok Update QR
+            Update Purok QR
           </button>
         
           <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

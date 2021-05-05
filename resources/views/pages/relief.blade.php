@@ -107,7 +107,7 @@
         </div>
     </div>
     <button type="button" class="btn btn-primary newrelief" data-toggle="modal" data-target="#reliefmodal">
-        Register New Relief
+        Register Relief
       </button>
 </div>
 
@@ -208,8 +208,8 @@
                                   </tr>
                                   @else
                                     <tr>
-                                      <td>{{$item->donation_quantity}}-</td>
-                                      <td> {{$item->donation_unit}}-</td>
+                                      <td>{{$item->donation_quantity}}&nbsp;</td>
+                                      <td> {{$item->donation_unit}}&nbsp;</td>
                                       <td>{{$item->donation_description}}</td>
                                     </tr>
                                   @endif

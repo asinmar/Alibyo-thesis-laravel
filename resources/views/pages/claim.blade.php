@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container">
-        <div>
+        <div style="margin-top:20px;">
             <h2>List of Receiver</h2>
         </div>
         <div class="row">
@@ -16,7 +16,7 @@
                     @if (count($residents)>0)
                     <table class="table table-sm">
                         
-                        <thead class="text-center">
+                        <thead class="text-center thead-dark">
                           <tr>
                             <th scope="col">Name</th>   
                             <th scope="col">Purok</th>

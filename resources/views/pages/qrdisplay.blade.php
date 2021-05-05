@@ -38,6 +38,7 @@
     
 </style>
 <body>
+
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="bg col-lg-5 col-md-10 col-xs-12  d-flex justify-content-center" >

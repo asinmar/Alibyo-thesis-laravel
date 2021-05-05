@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Resident;
 use SimpleSoftwareIO\QrCode\Generator;
 
+
 class ResidentsController extends Controller
 {
     /**
@@ -120,7 +121,6 @@ class ResidentsController extends Controller
      */
     public function store(Request $request)
     {
-    
         $this->validate($request,[
             'last_name' => 'required',
             'first_name' => 'required',
@@ -159,9 +159,8 @@ class ResidentsController extends Controller
      */
     public function show($id)
     {
-    
         $val = new Generator;
-        $qrcode = $val->size(200)->generate(($id));
+        $qrcode = $val->size(200)->style('round')->eye('circle')->generate(($id));
         return view('pages.qrdisplay')->with('qrcode',$qrcode);
         //
     }

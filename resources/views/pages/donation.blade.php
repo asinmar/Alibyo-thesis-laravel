@@ -55,7 +55,7 @@
                               </td>
                               <td>
                                 <button type="button" class="btn btn-danger btn-sm deletedonor" data-toggle="modal" data-target="#deleteDonor">
-                                    Trash
+                                    Delete
                                   </button>
                               </td>
                           </tr>       
@@ -67,7 +67,7 @@
             @endif
         </div>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-           Register new Donor
+           Register Donor
           </button>
     </div>
 
