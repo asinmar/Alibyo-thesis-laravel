@@ -1,4 +1,5 @@
 <style>
+
     .checkbox{
         margin-top: 10px;
         border: 1px solid;
@@ -14,7 +15,9 @@
         height: 158px;
       
     }
-
+    .list p {
+      display:inline;
+    }
 
 </style>
 @extends('layout.app')
@@ -33,7 +36,15 @@
 @endif
 <div class="wrapper" >
     <h1>Relief List</h1>
-    
+    <div class="list">
+        <p><strong>Total Reliefs(Including Expenditure)</strong></p>&nbsp;
+        <p>Rice: <strong>{{$rice}} Kilo</strong></p> 
+        <p>Noodle: <strong>{{$noodle}} Pc/s</strong></p>
+        <p>Canned Good: <strong>{{$can}} Pc/s</strong></p>
+        <p>Bottled Water: <strong>{{$bw}} Pc/s</strong></p>
+        <p>Coffee: <strong>{{$coffee}} Pc/s</strong></p>
+        <p>Hygiene Kits: <strong>{{$hk}} Pc/s</strong></p>
+    </div>
     <div class="restable">
         
         <div class="table-responsive-lg">
@@ -63,7 +74,8 @@
                         <td><a href="/relief/{{$relief->relief_id}}" class="btn btn-primary btn-sm"><i class="fas fa-qrcode"></i></a></td>
                         <td>{{$relief->relief_status}}</td>
                         <td>
-                          <div class="dropdown">
+                          <a href="/relief_items/{{$relief->relief_id}}" class="btn btn-success btn-sm">View</a>
+                          <!-- <div class="dropdown">
                             <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               View
                             </button>
@@ -82,7 +94,7 @@
                             </ul>
                                @endforeach
                             </div>
-                          </div>
+                          </div> -->
                         </td>
                         <td>{{$relief->relief_remarks}}</td>
                         <td>{{$relief->relief_date_prepared}}</td>
@@ -106,9 +118,10 @@
 
         </div>
     </div>
-    <button type="button" class="btn btn-primary newrelief" data-toggle="modal" data-target="#reliefmodal">
+    <button type="button" class="btn btn-primary btn-sm newrelief" data-toggle="modal" data-target="#reliefmodal">
         Register Relief
       </button>
+      <a href="/relief_pdf" class="btn btn-success btn-sm">Generate PDF</a>
 </div>
 
 {{-- delete modal --}}
@@ -181,12 +194,9 @@
                 <div class="form-group">
                     <label>Relief Name</label>
                     <input type="text" class="form-control" name="reliefname" required>
-                    <label>Relief item/Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="reliefdesc" required></textarea>
-                    <p class="text-muted">Please input All relief items</p>
                     <label>Relief Quantity(Packs/PCS.) </label>
-                    <input type="number" class="form-control" name="reliefqty" required>
-                    <p class="text-muted">(Please enter total number of relief prepared)</p>
+                    <input type="number" class="form-control" name="reliefqty" value="{{$res}}" readonly>
+                    <p class="text-muted">(This are the number of recipients)</p>
                     <label>Date Prepared</label>
                     <input type="date" name="reliefprep" class="form-control" min="1900-01-01" max="2999-01-01" required>
                     <div class="form-group">
@@ -194,7 +204,7 @@
                       <textarea class="form-control" rows="3" name="remarks"></textarea>
                     </div>
                     <input type="hidden" name='status' value="PENDING">
-                    <div class=" checkbox">
+                    <!-- <div class=" checkbox">
                         <h6>Please select donation used</h6>
                         <div class="inside overflow-auto">
                           @foreach ($donations as $item) 
@@ -218,7 +228,7 @@
                             </div>
                             @endforeach  
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 </div>
                 <div class="modal-footer">

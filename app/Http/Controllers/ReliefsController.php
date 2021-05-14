@@ -5,15 +5,67 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Relief;
 use App\Donation;
+use App\Bought_item;
+use App\Resident;
+use App\Relief_Item;
 use SimpleSoftwareIO\QrCode\Generator;
 
 class ReliefsController extends Controller
 {
+
+
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function relief_items($id){
+        $drice = Donation::where('donation_description','RICE')->sum('donation_quantity');
+        $dcan = Donation::where('donation_description','CANNED GOODS')->sum('donation_quantity');
+        $dnoodle = Donation::where('donation_description','NOODLE')->sum('donation_quantity');
+        $dbw = Donation::where('donation_description','BOTTLED WATER')->sum('donation_quantity');
+        $dcoffee = Donation::where('donation_description','COFFEE')->sum('donation_quantity');
+        $dhk = Donation::where('donation_description','HYGIENE KITS')->sum('donation_quantity');
+
+        $erice = Bought_item::where('item_name','RICE')->sum('item_quantity');
+        $ecan = Bought_item::where('item_name','CANNED GOODS')->sum('item_quantity');
+        $enoodle = Bought_item::where('item_name','NOODLE')->sum('item_quantity');
+        $ebw = Bought_item::where('item_name','BOTTLED WATER')->sum('item_quantity');
+        $ecoffee = Bought_item::where('item_name','COFFEE')->sum('item_quantity');
+        $ehk = Bought_item::where('item_name','HYGIENE KITS')->sum('item_quantity');
+
+        $rrice = Relief_Item::where('ri_description','RICE')->sum('ri_quantity');
+        $rcan = Relief_Item::where('ri_description','CANNED GOODS')->sum('ri_quantity');
+        $rnoodle = Relief_Item::where('ri_description','NOODLE')->sum('ri_quantity');
+        $rbw = Relief_Item::where('ri_description','BOTTLED WATER')->sum('ri_quantity');
+        $rcoffee = Relief_Item::where('ri_description','COFFEE')->sum('ri_quantity');
+        $rhk = Relief_Item::where('ri_description','HYGIENE KITS')->sum('ri_quantity');
+
+        $rice = $drice + $erice - $rrice;
+        $noodle = $dnoodle + $enoodle - $rnoodle;
+        $can = $dcan + $ecan - $rcan;
+        $bw = $dbw + $ebw - $rbw;
+        $coffee = $dcoffee + $ecoffee - $rcoffee;
+        $hk = $dhk + $ehk - $rhk;
+        $relief_items = Relief::find($id)->relief_items;
+        $res = Resident::count('res_qrcode_status','Enabled');
+        return view('pages.relief_items')
+                ->with('relief_items',$relief_items)
+                ->with('relief_id',$id)
+                ->with('rice',$rice)
+                ->with('noodle',$noodle)
+                ->with('can',$can)
+                ->with('bw',$bw)
+                ->with('coffee',$coffee)
+                ->with('hk',$hk)
+                ->with('res',$res);
+    }
+
+
+
     public function scannedrel($id){
         $rel = Relief::find($id);
         return $rel;
@@ -22,9 +74,48 @@ class ReliefsController extends Controller
 
     public function index()
     {   
+        $drice = Donation::where('donation_description','RICE')->sum('donation_quantity');
+        $dcan = Donation::where('donation_description','CANNED GOODS')->sum('donation_quantity');
+        $dnoodle = Donation::where('donation_description','NOODLE')->sum('donation_quantity');
+        $dbw = Donation::where('donation_description','BOTTLED WATER')->sum('donation_quantity');
+        $dcoffee = Donation::where('donation_description','COFFEE')->sum('donation_quantity');
+        $dhk = Donation::where('donation_description','HYGIENE KITS')->sum('donation_quantity');
+
+        $erice = Bought_item::where('item_name','RICE')->sum('item_quantity');
+        $ecan = Bought_item::where('item_name','CANNED GOODS')->sum('item_quantity');
+        $enoodle = Bought_item::where('item_name','NOODLE')->sum('item_quantity');
+        $ebw = Bought_item::where('item_name','BOTTLED WATER')->sum('item_quantity');
+        $ecoffee = Bought_item::where('item_name','COFFEE')->sum('item_quantity');
+        $ehk = Bought_item::where('item_name','HYGIENE KITS')->sum('item_quantity');
+
+        $rrice = Relief_Item::where('ri_description','RICE')->sum('ri_quantity');
+        $rcan = Relief_Item::where('ri_description','CANNED GOODS')->sum('ri_quantity');
+        $rnoodle = Relief_Item::where('ri_description','NOODLE')->sum('ri_quantity');
+        $rbw = Relief_Item::where('ri_description','BOTTLED WATER')->sum('ri_quantity');
+        $rcoffee = Relief_Item::where('ri_description','COFFEE')->sum('ri_quantity');
+        $rhk = Relief_Item::where('ri_description','HYGIENE KITS')->sum('ri_quantity');
+
+        $rice = $drice + $erice - $rrice;
+        $noodle = $dnoodle + $enoodle - $rnoodle;
+        $can = $dcan + $ecan - $rcan;
+        $bw = $dbw + $ebw - $rbw;
+        $coffee = $dcoffee + $ecoffee - $rcoffee;
+        $hk = $dhk + $ehk - $rhk;
+        
         $donations = Donation::all()->where('donation_status','PENDING');
+        $res = Resident::count('res_qrcode_status','Enabled');
         $reliefs = Relief::with('donations')->where('relief_status','PENDING')->get();
-        return view('pages.relief')->with('reliefs',$reliefs)->with('donations',$donations);
+        return view('pages.relief')
+            ->with('reliefs',$reliefs)
+            ->with('donations',$donations)
+            ->with('rice',$rice)
+            ->with('noodle',$noodle)
+            ->with('can',$can)
+            ->with('bw',$bw)
+            ->with('coffee',$coffee)
+            ->with('hk',$hk)
+            ->with('res',$res);
+            
     }
 
     /**
@@ -49,15 +140,14 @@ class ReliefsController extends Controller
         
         $relief = new Relief;
         $relief->relief_name=$request->input('reliefname');
-        $relief->relief_description=$request->input('reliefdesc');
         $relief->relief_quantity = $request->input('reliefqty');
         $relief->relief_remarks = $request->input('remarks');
         $relief->relief_date_prepared=$request->input('reliefprep');
         $relief->relief_status = $request->input('status');
         // $test = Relief::with('donations')->get();
         $relief->save();
-        $save = Relief::with('donations')->latest()->first();
-        $save->donations()->attach($request->get('yay'));
+        // $save = Relief::with('donations')->latest()->first();
+        // $save->donations()->attach($request->get('yay'));
         
         
     }

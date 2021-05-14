@@ -17,6 +17,18 @@ use App\Mail\WelcomMail;
 //     Mail::to('vlarrabis@gmail.com')->send(new WelcomMail());
 //     return new WelcomMail();
 // });
+
+Route::get('/report_pdf','ReportsController@leftReliefpdf');
+Route::get('/pdf_asd',function(){return view('pages.pdf_test');});
+Route::get('/donations_pdf','ReportsController@donationpdf');
+Route::get('/relief_pdf','ReportsController@reliefpdf');
+Route::put('/relief_item_add','ReliefItemsController@store')->middleware('admin');
+Route::get('/relief_items/{id}','ReliefsController@relief_items')->middleware('admin');
+Route::get('gen_donation_pdf','DonationsController@donationpdf')->middleware('admin');
+Route::get('gen_donor_pdf','DonorsController@donorpdf')->middleware('admin');
+Route::get('gen_resident_pdf','ResidentsController@genpdf')->middleware('admin');
+
+
 Route::get('/asd','ExpendituresController@test');
 
 Route::get('/super_admin/registration', function(){return view('pages.super_admin');});

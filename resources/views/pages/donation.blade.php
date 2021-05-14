@@ -1,3 +1,4 @@
+
 @extends('layout.app')
 
 @section('content')
@@ -21,6 +22,8 @@
     <div class="wrapper" >
         <div>
             <h1>Donations</h1>
+           
+            
         </div>
         <div class="restable">
             @if (count($donors)>0)
@@ -66,9 +69,10 @@
                 <p style="margin-left: 40px">This Table is empty</p>
             @endif
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
            Register Donor
           </button>
+          <a href="/donations_pdf" class="btn btn-success btn-sm">Generate PDF</a>
     </div>
 
 

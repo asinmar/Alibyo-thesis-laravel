@@ -21,10 +21,10 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Relief Name</th>
-                                    <th scope="col">Description</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Remarks</th>
+                                    <th scope="col">Items</th>
                                     <th scope="col">Date Prepared</th>
                                 </tr>
                                 </thead>
@@ -33,10 +33,16 @@
                                     @foreach ($pending_reliefs as $relief)
                                         <tr>
                                             <th>{{$relief->relief_name}}</th>
-                                            <td>{{$relief->relief_description}}</td>
+                                            
                                             <td>{{$relief->relief_quantity}}</td>
                                             <td>{{$relief->relief_status}}</td>
                                             <td>{{$relief->relief_remarks}}</td>
+                                            <td>@foreach($relief->relief_items as $item)
+                                                    <ul>
+                                                        <li>{{$item->ri_quantity}}&nbsp;{{$item->ri_unit}}&nbsp;{{$item->ri_description}}</li>
+                                                    </ul>
+                                                @endforeach
+                                            </td>
                                             <td>{{$relief->relief_date_prepared}}</td>
                                         </tr>
                                     @endforeach

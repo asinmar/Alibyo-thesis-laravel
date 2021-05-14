@@ -154,6 +154,7 @@ use Carbon\Carbon;
               Disable
             </button>
           </div>
+          <a href="/gen_resident_pdf" class="btn btn-success btn-sm">Generate PDF</a>
       </div>
        
 

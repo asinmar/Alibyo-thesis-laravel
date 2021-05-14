@@ -17,4 +17,9 @@ class Relief extends Model
     public function resident(){
         return $this->belongsToMany(Resident::class,'resident_relief','relief_id','res_id');
     }
+
+    function relief_items(){
+        return $this->hasMany('App\Relief_item','relief_id','relief_id');
+    }
 }
+// 

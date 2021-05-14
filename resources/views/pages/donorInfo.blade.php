@@ -218,13 +218,24 @@
                                     <option disabled selected>Options</option>
                                     <option>pc/s</option>
                                     <option>kl/s</option>
-                                    <option>sack/s</option>
                                 </select>
                             </div>
                             <div>
+                                <label for="exampleFormControlSelect1">Description</label>
+                                <select class="form-control" name="description" id="exampleFormControlSelect1" required>
+                                    <option disabled selected>Basic Relief</option>
+                                    <option>Rice</option>
+                                    <option>Noodle</option>
+                                    <option>Canned Goods</option>
+                                    <option>Bottled Water</option>
+                                    <option>Coffee</option>
+                                    <option>Hygiene Kits</option>
+                                </select>
+                            </div>
+                            <!-- <div>
                                 <label>Description</label>
                                 <input type="text" name="description" class="form-control" required>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="recieve">Recieve By</label>
                                 <input type="text" class="form-control" name="recieveby" required>

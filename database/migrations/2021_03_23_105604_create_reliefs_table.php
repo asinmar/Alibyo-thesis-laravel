@@ -16,7 +16,6 @@ class CreateReliefsTable extends Migration
         Schema::create('reliefs', function (Blueprint $table) {
             $table->bigIncrements('relief_id');
             $table->string('relief_name');
-            $table->string('relief_description');
             $table->string('relief_quantity');
             $table->string('relief_status');
             $table->string('relief_remarks')->nullable();

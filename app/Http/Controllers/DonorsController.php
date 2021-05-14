@@ -8,6 +8,45 @@ use App\Donor;
 class DonorsController extends Controller
 {
 
+
+
+
+    public function donorpdf(){
+        $pdf = \App::make('dompdf.wrapper');
+        $data = Donor::all();
+        $pdf->loadHTML($this->convert_resident_data_to_html());
+        return $pdf->stream();
+    }
+    
+    public function convert_resident_data_to_html(){
+        $customer_data = Donor::all();
+        $output = '
+                    <h2>Donors Lists</h2>
+                    <table style = "width:100%">
+                        <thead>
+                            <tr>
+                                <th>Donor Name</th>
+                                <th>Type</th>
+                                <th>Contact Number</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        foreach($customer_data as $data){
+                            $output .='
+                                <tr>
+                                    <td>'.$data->donor_name.'</td>
+                                    <td>'.$data->donor_type.'</td>
+                                    <td>'.$data->donor_contact_number.'</td>
+                                    <td>'.$data->donor_email.'</td>
+                                </tr>';
+                            }
+                        '</tbody>
+                    </table>';
+        return $output;
+    }
+
+
    public function posttest(Request $request){
     //    return $request;
        $don = new Donor;

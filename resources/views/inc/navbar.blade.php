@@ -81,6 +81,8 @@
                 <li><a class="dropdown-item" href="/distributor"><i class="far fa-handshake"></i>Distributor</a></li>
                 <li><a class="dropdown-item" href="/trashed"><i class="far fa-trash-alt"></i>Trashed</a></li>
                 <li><a class="dropdown-item" href="/recieved_list"><i class="far fa-laugh-beam"></i>Past Recievers</a></li>
+                <li><a class="dropdown-item" href="/report_pdf"><i class="fas fa-print"></i>Reports</a></li>
+
                 
             </ul>
             

@@ -6,6 +6,51 @@ use Illuminate\Http\Request;
 use App\Donation;
 class DonationsController extends Controller
 {
+    public function sum(){
+        $data = Donation::sum('donation_quantity');
+        return $data;
+    }
+
+
+    public function donationpdf(){
+        $pdf = \App::make('dompdf.wrapper');
+        $data = Donation::all();
+        $pdf->loadHTML($this->convert_resident_data_to_html());
+        return $pdf->stream();
+    }
+    
+    public function convert_resident_data_to_html(){
+        $customer_data = Donation::all();
+        $output = '
+                    <h2>Donations Lists</h2>
+                    <table style = "width:100%">
+                        <thead>
+                            <tr>
+                                <th>Quantity</th>
+                                <th>Unit</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        foreach($customer_data as $data){
+                            $output .='
+                                <tr>
+                                    <td>'.$data->donation_quantity.'</td>
+                                    <td>'.$data->donation_unit.'</td>
+                                    <td>'.$data->donation_amount.'</td>
+                                    <td>'.$data->donation_description.'</td>
+                                    <td>'.$data->donation_type.'</td>
+                                    <td>'.$data->donation_status.'</td>
+                                </tr>';
+                            }
+                        '</tbody>
+                    </table>';
+        return $output;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -35,12 +80,12 @@ class DonationsController extends Controller
     public function store(Request $request)
     {
         //
-       
-        // $this->validate($request,[
-        //     'description' => 'required',
-        //     'donation_type'=>'required',
-        //     'recieveby' => 'required',
-        // ]);
+        if($request->donation_type == 'RELIEF'){
+            $this->validate($request,[
+                'description' => 'required',
+                'unit'=>'required',
+            ]);
+        }
         $donation = new Donation;
         $donation->donation_quantity = $request->input('qty');
         $donation->donation_unit = $request->input('unit');

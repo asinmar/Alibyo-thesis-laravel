@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Resident;
 use SimpleSoftwareIO\QrCode\Generator;
-
+use PDF;
 
 class ResidentsController extends Controller
 {
@@ -14,6 +14,42 @@ class ResidentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function genpdf(){
+        $pdf = \App::make('dompdf.wrapper');
+        $data = Resident::all();
+        $pdf->loadHTML($this->convert_resident_data_to_html());
+        return $pdf->stream();
+    }
+    
+    public function convert_resident_data_to_html(){
+        $customer_data = Resident::all();
+        $output = '
+                    <h2>Residents Lists</h2>
+                    <table style = "width:100%">
+                        <thead>
+                            <tr>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Purok</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+                        foreach($customer_data as $data){
+                            $output .='
+                                <tr>
+                                    <td>'.$data->res_last_name.'</td>
+                                    <td>'.$data->res_first_name.'</td>
+                                    <td>'.$data->res_middle_name.'</td>
+                                    <td>'.$data->res_purok.'</td>
+                                </tr>';
+                            }
+                        '</tbody>
+                    </table>';
+        return $output;
+    }
+
+
 
      public function recieved_relief(Request $request){
 

@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 class BoughtItemsController extends Controller
 {
     public function store(Request $request){
+        $this->validate($request,[
+            'item_name' => 'required',
+            'unit'=>'required',
+        ]);
+
         $items = new Bought_item;
-        $items->item_name = $request->input('item_name');
+        $items->item_name = strtoupper($request->input('item_name'));
         $items->item_quantity = $request->input('qty');
         $items->item_unit = $request->input('unit');
         $items->exp_id = $request->input('exp_id');
